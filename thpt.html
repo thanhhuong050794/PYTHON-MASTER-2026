@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>InsightBI - Trường THPT</title>
+  
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <style>
+    @layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } }
+    ::-webkit-scrollbar { display: none; }
+    @keyframes page-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    body { animation: page-enter 420ms ease-out both; }
+    aside nav a { transition: color 180ms ease, background-color 180ms ease, transform 180ms ease; }
+    aside nav a:hover { transform: translateX(3px); }
+    main > * { animation: page-enter 420ms ease-out both; }
+    main > *:nth-child(2) { animation-delay: 60ms; }
+    main > *:nth-child(3) { animation-delay: 120ms; }
+    main > *:nth-child(4) { animation-delay: 180ms; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 1ms !important; }
+    }
+    section[id^="sec-"] { scroll-margin-top: 5.5rem; }
+  </style>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: { colors: { primary: { DEFAULT: '#4338ca', 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3' } }, fontFamily: { body: ['Inter', 'sans-serif'], display: ['Plus Jakarta Sans', 'sans-serif'] } } }
+    };
+  </script>
+</head>
+
+<body class="bg-slate-50 font-body text-slate-800 antialiased selection:bg-primary-100 selection:text-primary-700">
+
+  <!--  SIDEBAR CHUNG-->
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-full w-72 bg-white border-r border-slate-200 z-50 flex flex-col shadow-sm">
+  <div class="h-16 px-5 flex items-center gap-3 border-b border-slate-100 bg-white">
+    <img alt="InsightBI Logo" class="h-9 w-9 rounded-xl object-contain shadow-sm border border-indigo-100" src="https://lh3.googleusercontent.com/aida/AEtjO1XzLKEiIJ_QF7rbiSAAPXEESl9NVRRi66wWFdJOK5weol-oEyAN7AwxZLwTeeeGLsGjkDrNGIbaMXk5WUnII8KA68HtN-hnj4FgzzYhuaoOnp8oH2SCMTzMK2X33Sut0DtKq07mL8iLrGSvKhRQKU6_FAztv3mFhXvEKT63qVAwFZE0Fn6JeVA45ctIUhiU_K-zuF1CmC4gbor_zNQJR1fpRFJ98oNx6VmCeLv7MKi4Nxq3QM7J7liZ9v2w">
+    <div class="flex flex-col">
+      <span class="font-display font-bold text-slate-900 tracking-tight text-base leading-tight">InsightBI Platform</span>
+      <span class="font-display text-[10px] font-bold text-primary-600 tracking-wider uppercase">EduMetrics Intelligence</span>
+    </div>
+  </div>
+  
+  <div class="flex-1 overflow-y-auto px-3.5 py-4 space-y-6">
+    
+    <!-- DOANH NGHIỆP -->
+    <nav class="space-y-1">
+      <div class="px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-slate-400">Doanh nghiệp</div>
+      <a href="doanh-nghiep.html#sec-location" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">groups</span><span>Số lượng thí sinh</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-doanh-thu-tinh-thanh" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">payments</span><span>Doanh thu</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-xu-huong-ngay" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">trending_up</span><span>Xu hướng đăng ký & doanh thu</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-funnel" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">filter_alt</span><span>Phễu chuyển đổi</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-commission" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">account_balance_wallet</span><span>Doanh thu & Hoa hồng</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-telesale" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">call</span><span>Hiệu quả Telesale</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-sponsors" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">handshake</span><span>Truyền thông & Nhà tài trợ</span>
+      </a>
+    </nav>
+
+    <!-- TRƯỜNG ĐẠI HỌC -->
+    <nav class="space-y-1">
+      <div class="px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-slate-400">Trường Đại học</div>
+      <a href="dai-hoc.html#sec-top-candidates" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">military_tech</span><span>Top % Thí sinh Xuất sắc</span>
+      </a>
+      <a href="dai-hoc.html#sec-workforce" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">groups</span><span>Nhân lực & Cơ cấu độ tuổi</span>
+      </a>
+      <a href="dai-hoc.html#sec-tuyen-sinh-that" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">public</span><span>Tuyển sinh</span>
+      </a>
+      <a href="dai-hoc.html#sec-roi-nguon" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">donut_large</span><span>ROI theo nguồn (UTM)</span>
+      </a>
+      <a href="dai-hoc.html#sec-do-tuoi-hang" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">bar_chart</span><span>Độ tuổi & Phân hạng</span>
+      </a>
+      <a href="dai-hoc.html#sec-nhan-tai-truong" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">query_stats</span><span>Định vị nhân tài theo trường</span>
+      </a>
+    </nav>
+
+    <!-- TRƯỜNG THPT -->
+    <nav class="space-y-1">
+      <div class="px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-slate-400">Trường THPT</div>
+      
+      <!-- Các mục được thêm mới -->
+      <a href="thpt.html#sec-phan-tich-diem" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">stacked_line_chart</span><span>Phân tích điểm</span>
+      </a>
+      <a href="thpt.html#sec-nang-luc-lap-trinh" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">code</span><span>Năng lực lập trình</span>
+      </a>
+      <a href="thpt.html#sec-minh-chung-nang-luc" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">verified</span><span>Minh chứng năng lực</span>
+      </a>
+    </nav>
+
+  </div>
+</aside>
+
+  <!-- ================= VÙNG HIỂN THỊ CHÍNH ================= -->
+  <div class="pl-72 min-h-screen bg-slate-50">
+    
+    <!-- TOP HEADER -->
+<header class="fixed top-0 left-72 right-0 h-16 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40 flex items-center justify-between px-8 shadow-xs">
+  
+  <!-- CỘT TRÁI: THANH TÌM KIẾM -->
+  <div class="flex items-center gap-4 flex-1 max-w-lg">
+    <div class="relative w-full flex items-center">
+      <span class="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg pointer-events-none">search</span>
+      <input class="w-full bg-slate-100 hover:bg-slate-100/80 text-slate-800 placeholder:text-slate-400 text-xs pl-10 pr-4 py-2 rounded-xl border border-transparent focus:border-primary-500 focus:bg-white focus:outline-none transition-all" placeholder="Tìm nhanh chỉ số, thí sinh, đối tác... (Ctrl + K)" type="text">
+    </div>
+  </div>
+
+  <!-- CỘT PHẢI: BỘ LỌC THỜI GIAN, THÔNG BÁO & NÚT XUẤT PDF -->
+  <div class="flex items-center gap-3">
+    
+    <!-- Bộ lọc thời gian -->
+    <div class="hidden xl:flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
+      <button class="px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition-colors" type="button">Hôm nay</button>
+      <button class="px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition-colors" type="button">7 ngày qua</button>
+      <button class="px-3 py-1 rounded-lg bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/60" type="button">Quý 1/2025</button>
+    </div>
+
+    <!-- Nút Xuất Báo Cáo PDF -->
+    <button class="flex items-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-xs px-3.5 py-2 rounded-xl shadow-xs transition-colors" type="button">
+      <span class="material-symbols-outlined text-base">download</span>
+      <span>Xuất Báo Cáo PDF</span>
+    </button>
+
+    <!-- Nút Chuông Thông Báo (có chấm xanh) -->
+    <button class="relative p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" type="button">
+      <span class="material-symbols-outlined text-xl">notifications</span>
+      <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-500"></span>
+    </button>
+
+  </div>
+</header>
+
+    <!-- NỘI DUNG TỪNG TRANG SẼ DÁN VÀO ĐÂY -->
+    <main class="w-full pt-20 px-8 py-7 space-y-7">
+      
+      <!-- HERO -->
+<div class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs flex justify-between items-center">
+  <div>
+    <h1 class="font-display font-extrabold text-2xl text-slate-900">BẢNG ĐIỀU KHIỂN TRƯỜNG THPT</h1>
+    <p class="text-xs text-slate-500 mt-1">Định hướng nguyện vọng, phổ điểm và tỷ lệ trúng tuyển Đại học của học sinh khối 12.</p>
+  </div>
+  <button class="bg-slate-900 text-white text-xs px-4 py-2.5 rounded-xl font-semibold">Tải Báo Cáo Phổ Điểm</button>
+</div>
+
+<!-- SO SÁNH ĐIỂM TRUNG BÌNH BẢNG A -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4" id="sec-diem-trung-binh">
+  <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
+    <div>
+      <span class="text-[11px] uppercase tracking-wider text-indigo-600 font-bold">Phân tích điểm Bảng A</span>
+      <h2 class="font-display text-lg text-slate-900 font-bold mt-1">Điểm trung bình Bảng A: THPT Nguyễn Thị Minh Khai so với toàn quốc</h2>
+      <p class="text-xs text-slate-500 mt-1">Chênh lệch: <strong class="text-rose-600">-0.48 điểm</strong> · Dữ liệu điểm giả lập, không dùng để báo cáo.</p>
+    </div>
+    <span class="material-symbols-outlined text-indigo-600 text-xl">bar_chart</span>
+  </div>
+  <div class="relative h-80"><canvas id="average-score-chart" aria-label="Biểu đồ điểm trung bình Bảng A so với toàn quốc"></canvas></div>
+</section>
+
+<!-- TOP TEST CASE -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4" id="sec-top-test-case">
+  <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
+    <div>
+      <span class="text-[11px] uppercase tracking-wider text-indigo-600 font-bold">Năng lực lập trình</span>
+      <h2 class="font-display text-lg text-slate-900 font-bold mt-1">Top 15 học sinh tối ưu test case cao nhất</h2>
+      <p class="text-xs text-slate-500 mt-1">Trung bình % test case đạt theo lời giải tốt nhất mỗi bài · Chỉ xếp hạng học sinh làm ≥ 5 bài.</p>
+    </div>
+    <span class="material-symbols-outlined text-indigo-600 text-xl">leaderboard</span>
+  </div>
+  <div class="relative h-[42rem]"><canvas id="top-test-case-chart" aria-label="Biểu đồ top 15 học sinh tối ưu test case"></canvas></div>
+  <div id="top-test-case-detail" class="min-h-12 p-3 rounded-lg bg-indigo-50 border border-indigo-100 text-xs opacity-0 transition-opacity" aria-live="polite">
+    <span class="font-bold text-slate-900" id="top-test-case-label"></span>
+    <span class="ml-2 font-display font-extrabold text-indigo-700" id="top-test-case-value"></span>
+    <span class="ml-2 text-slate-500" id="top-test-case-stats"></span>
+  </div>
+</section>
+
+<!-- MINH CHỨNG NĂNG LỰC -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-4" id="sec-minh-chung-nang-luc">
+  <div class="flex items-start justify-between gap-4 pb-4 border-b border-slate-100">
+    <div>
+      <span class="text-[11px] uppercase tracking-wider text-indigo-600 font-bold">Minh chứng năng lực</span>
+      <h2 class="font-display text-lg text-slate-900 font-bold mt-1">Bài đã chinh phục theo độ khó — Hồ Bảo An</h2>
+      <p class="text-xs text-slate-500 mt-1">Chỉ tính bài có kết quả <strong class="text-slate-700">Đúng</strong> · Dữ liệu giả lập.</p>
+    </div>
+    <span class="material-symbols-outlined text-indigo-600 text-xl">donut_large</span>
+  </div>
+  <div class="relative h-[28rem] max-w-3xl mx-auto"><canvas id="conquered-difficulty-chart" aria-label="Biểu đồ donut bài đã chinh phục theo độ khó của Hồ Bảo An"></canvas></div>
+  <div id="conquered-difficulty-detail" class="min-h-12 p-3 rounded-lg bg-indigo-50 border border-indigo-100 text-xs opacity-0 transition-opacity" aria-live="polite">
+    <span class="font-bold text-slate-900" id="conquered-difficulty-label"></span>
+    <span class="ml-2 font-display font-extrabold text-indigo-700" id="conquered-difficulty-value"></span>
+    <span class="ml-2 text-slate-500" id="conquered-difficulty-stats"></span>
+  </div>
+</section>
+</section>
+
+</section>
+
+    </main>
+  </div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const averageScoreCanvas = document.querySelector('#average-score-chart');
+    if (averageScoreCanvas && window.Chart) {
+      const scoreGroups = ['THPT Nguyễn Thị Minh Khai\n(Vĩnh Phúc) — n=1', 'Toàn quốc\nBảng A — n=19'];
+      const scoreAverages = [5.97, 6.45];
+      const scoreDetails = [
+        { median: '5.97', highest: '5.97', lowest: '5.97' },
+        { median: '6.52', highest: '9.71', lowest: '3.97' }
+      ];
+      let averageScoreChart;
+      averageScoreCanvas.style.cursor = 'pointer';
+      averageScoreChart = new Chart(averageScoreCanvas, {
+        type: 'bar',
+        data: { labels: scoreGroups, datasets: [{ label: 'Điểm trung bình', data: scoreAverages, backgroundColor: ['#6840c6', '#8ba9e3'], borderRadius: 2, barPercentage: 0.6, categoryPercentage: 0.7 }] },
+        plugins: [{ id: 'average-score-labels', afterDatasetsDraw(chart) { const { ctx } = chart; const dataset = chart.getDatasetMeta(0); ctx.save(); ctx.fillStyle = '#0f172a'; ctx.font = '700 16px Inter, sans-serif'; ctx.textAlign = 'center'; dataset.data.forEach((bar, index) => { ctx.fillText(scoreAverages[index].toFixed(2), bar.x, bar.y - 8); }); ctx.restore(); } }],
+        options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false }, tooltip: { callbacks: { label: context => `Điểm TB: ${context.parsed.y.toFixed(2)}` } } }, scales: { x: { ticks: { font: { size: 10 }, maxRotation: 0, minRotation: 0 }, grid: { display: false } }, y: { beginAtZero: true, max: 10, ticks: { stepSize: 2 }, title: { display: true, text: 'Điểm trung bình' } } } }
+      });
+    }
+
+    const topTestCaseCanvas = document.querySelector('#top-test-case-chart');
+    if (topTestCaseCanvas && window.Chart) {
+      // 1. Định nghĩa các trường muốn làm nổi bật và màu sắc tương ứng
+      const TRUONG_CHINH = 'THPT Nguyễn Thị Minh Khai (Vĩnh Phúc)';
+      const TRUONG_DOI_THU = 'THPT Trần Phú (Đồng Nai)';
+      
+      const MAU_TIM = '#6840c6';
+      const MAU_CAM = '#f59e0b';
+      const MAU_XANH = '#8ba9e3'; // Màu mặc định cho "Trường khác"
+
+      const topStudents = [
+        { ten: 'Hồ Mỹ Nhi', truong: 'THPT Nguyễn Thị Minh Khai (Hải Phòng)', diem: 96.1, soBai: 36 },
+        { ten: 'Dương Mỹ Mai', truong: 'THPT Trần Phú (Đồng Nai)', diem: 95.2, soBai: 46 },
+        { ten: 'Lý Ánh Trâm', truong: 'THPT Việt Đức (Hải Dương)', diem: 95.0, soBai: 31 },
+        { ten: 'Đặng Diễm Linh', truong: 'THPT Chu Văn An (Khánh Hòa)', diem: 93.3, soBai: 49 },
+        { ten: 'Đặng Ngọc Hoa', truong: 'THPT Lê Quý Đôn (TP. Hồ Chí Minh)', diem: 92.0, soBai: 33 },
+        { ten: 'Đỗ Anh Đạt', truong: 'THPT Lương Thế Vinh (Nam Định)', diem: 87.8, soBai: 59 },
+        { ten: 'Ngô Ánh Diệp', truong: 'THPT Lương Thế Vinh (Quảng Ninh)', diem: 87.3, soBai: 32 },
+        { ten: 'Đỗ Đức Việt', truong: 'THPT Nguyễn Huệ (Thanh Hóa)', diem: 87.2, soBai: 43 },
+        { ten: 'Đỗ Ngọc Linh', truong: 'THPT Chu Văn An (Quảng Ninh)', diem: 86.4, soBai: 34 },
+        { ten: 'Đặng Hồng Ngân', truong: 'THPT Lê Quý Đôn (Bình Dương)', diem: 86.4, soBai: 47 },
+        { ten: 'Trần Minh Phát', truong: 'THPT Trần Phú (Hải Dương)', diem: 86.3, soBai: 46 },
+        { ten: 'Đặng Văn Bảo', truong: 'THPT Việt Đức (Nghệ An)', diem: 84.8, soBai: 40 },
+        { ten: 'Hồ Bảo An', truong: TRUONG_CHINH, diem: 83.6, soBai: 54 },
+        { ten: 'Lê Thành Phong', truong: 'THPT Nguyễn Thị Minh Khai (Khánh Hòa)', diem: 82.3, soBai: 33 },
+        { ten: 'Hoàng Quốc Phong', truong: 'THPT Trần Hưng Đạo (Bắc Ninh)', diem: 82.3, soBai: 45 }
+      ];
+
+      topTestCaseCanvas.style.cursor = 'pointer';
+      new Chart(topTestCaseCanvas, {
+        type: 'bar',
+        data: {
+          labels: topStudents.map(row => [row.ten, row.truong]),
+          datasets: [{
+            data: topStudents.map(row => row.diem),
+            // 2. Tự động đổi màu cột dựa theo tên trường
+            backgroundColor: topStudents.map(row => {
+              if (row.truong === TRUONG_CHINH) return MAU_TIM;
+              if (row.truong === TRUONG_DOI_THU) return MAU_CAM;
+              return MAU_XANH;
+            }),
+            borderRadius: 2,
+            barPercentage: 0.78,
+            categoryPercentage: 0.86
+          }]
+        },
+        plugins: [{
+          id: 'top-test-case-labels',
+          afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            const meta = chart.getDatasetMeta(0);
+            ctx.save();
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '500 11px Inter, sans-serif';
+            ctx.textAlign = 'left';
+            ctx.textBaseline = 'middle';
+            meta.data.forEach((bar, index) => {
+              const row = topStudents[index];
+              ctx.fillText(`${row.diem.toFixed(1)}%  (${row.soBai} bài)`, bar.x + 8, bar.y);
+            });
+            ctx.restore();
+          }
+        }],
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          layout: { padding: { right: 92 } }, // Sửa lề để text số liệu không bị cắt
+          onClick: (event, elements) => { // Khôi phục tính năng click để hiện chi tiết
+            if (!elements.length) return;
+            const row = topStudents[elements[0].index];
+            document.querySelector('#top-test-case-label').textContent = `${row.ten} — ${row.truong}`;
+            document.querySelector('#top-test-case-value').textContent = `${row.diem.toFixed(1)}% test case đạt`;
+            
+            let schoolTypeStr = 'Trường khác';
+            if (row.truong === TRUONG_CHINH) schoolTypeStr = 'Học sinh trường mình';
+            else if (row.truong === TRUONG_DOI_THU) schoolTypeStr = 'Trường đối thủ';
+            
+            document.querySelector('#top-test-case-stats').textContent = `${row.soBai} bài · ${schoolTypeStr}`;
+            document.querySelector('#top-test-case-detail').classList.remove('opacity-0');
+          },
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom',
+              align: 'end',
+              labels: {
+                usePointStyle: true,
+                boxWidth: 10,
+                font: { family: 'Inter', size: 11 },
+                // 3. Khai báo các mục sẽ hiển thị trong phần chú giải
+                generateLabels: () => ([
+                  { text: `${TRUONG_CHINH}`, fillStyle: MAU_TIM, strokeStyle: MAU_TIM, hidden: false, pointStyle: 'rect' },
+                  { text: `${TRUONG_DOI_THU}`, fillStyle: MAU_CAM, strokeStyle: MAU_CAM, hidden: false, pointStyle: 'rect' },
+                  { text: 'Trường khác', fillStyle: MAU_XANH, strokeStyle: MAU_XANH, hidden: false, pointStyle: 'rect' }
+                ])
+              }
+            },
+            tooltip: {
+              callbacks: {
+                title: context => { // Bổ sung lại title cho tooltip để hiện Tên - Trường
+                  const row = topStudents[context[0].dataIndex];
+                  return `${row.ten} — ${row.truong}`;
+                },
+                label: context => {
+                  const row = topStudents[context.dataIndex]; // Sửa lỗi biến "ranked" thành "topStudents"
+                  return `${row.diem.toFixed(1)}%  (${row.soBai} bài)`;
+                }
+              }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 112,
+              grid: { color: 'rgba(148, 163, 184, 0.35)', borderDash: [4, 4] },
+              title: { display: true, text: '% test case đạt (trung bình lời giải tốt nhất mỗi bài)', font: { size: 11 } }
+            },
+            y: {
+              grid: { display: false },
+              ticks: { font: { size: 10 }, autoSkip: false, crossAlign: 'far' },
+              afterFit(scale) { scale.width = Math.max(scale.width, 220); }
+            }
+          }
+        }
+      });
+    }
+
+    const conqueredDifficultyCanvas = document.querySelector('#conquered-difficulty-chart');
+    if (conqueredDifficultyCanvas && window.Chart) {
+      const C3_TEN_HS = 'Hồ Bảo An';
+      const C3_MUC = ['Dễ', 'Trung bình', 'Khó', 'HSG'];
+      const C3_MAU = ['#8FD19E', '#8FAEEA', '#F2B24B', '#D9534F'];
+      const baiTheoDoKho = [12, 9, 10, 5];
+      const tongBai = baiTheoDoKho.reduce((sum, value) => sum + value, 0);
+      conqueredDifficultyCanvas.style.cursor = 'pointer';
+      new Chart(conqueredDifficultyCanvas, {
+        type: 'doughnut',
+        data: {
+          labels: C3_MUC,
+          datasets: [{
+            data: baiTheoDoKho,
+            backgroundColor: C3_MAU,
+            borderColor: '#ffffff',
+            borderWidth: 3,
+            hoverOffset: 4
+          }]
+        },
+        plugins: [{
+          id: 'conquered-difficulty-watermark',
+          afterDraw(chart) {
+            const { ctx, chartArea } = chart;
+            const cx = (chartArea.left + chartArea.right) / 2;
+            const cy = (chartArea.top + chartArea.bottom) / 2;
+            ctx.save();
+            ctx.translate(cx, cy);
+            ctx.rotate(-20 * Math.PI / 180);
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = 'rgba(217, 83, 79, 0.14)';
+            ctx.font = '800 46px "Plus Jakarta Sans", Inter, sans-serif';
+            ctx.fillText('DỮ LIỆU GIẢ LẬP', 0, 0);
+            ctx.restore();
+          }
+        }, {
+          id: 'conquered-difficulty-center',
+          afterDraw(chart) {
+            const { ctx, chartArea } = chart;
+            const cx = (chartArea.left + chartArea.right) / 2;
+            const cy = (chartArea.top + chartArea.bottom) / 2;
+            ctx.save();
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '800 28px "Plus Jakarta Sans", Inter, sans-serif';
+            ctx.fillText(String(tongBai), cx, cy - 18);
+            ctx.font = '600 13px Inter, sans-serif';
+            ctx.fillStyle = '#334155';
+            ctx.fillText('bài đã', cx, cy + 6);
+            ctx.fillText('chinh phục', cx, cy + 22);
+            ctx.restore();
+          }
+        }, {
+          id: 'conquered-difficulty-pct',
+          afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            const meta = chart.getDatasetMeta(0);
+            ctx.save();
+            ctx.fillStyle = '#0f172a';
+            ctx.font = '600 12px Inter, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            meta.data.forEach((arc, index) => {
+              const value = baiTheoDoKho[index];
+              if (!value) return;
+              const percent = Math.round((value / tongBai) * 100);
+              const pos = arc.tooltipPosition();
+              ctx.fillText(`${percent}%`, pos.x, pos.y);
+            });
+            ctx.restore();
+          }
+        }],
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          rotation: -90,
+          cutout: '58%',
+          onClick: (event, elements) => {
+            if (!elements.length) return;
+            const index = elements[0].index;
+            const value = baiTheoDoKho[index];
+            document.querySelector('#conquered-difficulty-label').textContent = `${C3_TEN_HS} · ${C3_MUC[index]}`;
+            document.querySelector('#conquered-difficulty-value').textContent = `${value} bài`;
+            document.querySelector('#conquered-difficulty-stats').textContent = `${Math.round((value / tongBai) * 100)}% bài đã chinh phục`;
+            document.querySelector('#conquered-difficulty-detail').classList.remove('opacity-0');
+          },
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                usePointStyle: true,
+                boxWidth: 10,
+                padding: 18,
+                font: { family: 'Inter', size: 12 },
+                generateLabels: chart => C3_MUC.map((muc, index) => ({
+                  text: `${muc}: ${baiTheoDoKho[index]} bài`,
+                  fillStyle: C3_MAU[index],
+                  strokeStyle: C3_MAU[index],
+                  hidden: false,
+                  index,
+                  datasetIndex: 0,
+                  pointStyle: 'rectRounded'
+                }))
+              }
+            },
+            tooltip: {
+              callbacks: {
+                label: context => `${context.label}: ${context.parsed} bài (${Math.round((context.parsed / tongBai) * 100)}%)`
+              }
+            }
+          }
+        }
+      });
+    }
+
+    const setActiveSidebarLink = link => {
+      document.querySelectorAll('aside nav a').forEach(item => {
+        item.classList.remove('bg-primary-50', 'text-primary-700', 'font-semibold');
+        item.classList.add('text-slate-600', 'font-medium');
+        const icon = item.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.remove('text-primary-600');
+          icon.classList.add('text-slate-400');
+        }
+      });
+      if (!link) return;
+      link.classList.remove('text-slate-600', 'font-medium');
+      link.classList.add('bg-primary-50', 'text-primary-700', 'font-semibold');
+      const icon = link.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.classList.remove('text-slate-400');
+        icon.classList.add('text-primary-600');
+      }
+    };
+
+    const highSchoolNav = document.querySelectorAll('aside nav')[2];
+    const matchingLink = [...highSchoolNav.querySelectorAll('a')].find(link => {
+      const url = new URL(link.href, window.location.href);
+      return url.pathname === window.location.pathname && url.hash === window.location.hash;
+    });
+    setActiveSidebarLink(matchingLink || highSchoolNav.querySelector('a'));
+
+    document.querySelectorAll('aside nav a').forEach(link => {
+      link.addEventListener('click', function () {
+        const destination = new URL(this.href, window.location.href);
+        if (destination.pathname !== window.location.pathname) return;
+        setActiveSidebarLink(this);
+      });
+    });
+
+    // Kích hoạt hiệu ứng trượt mượt mà (smooth scrolling) cho các thẻ neo nội bộ
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const link = new URL(this.href, window.location.href);
+        if (link.pathname !== window.location.pathname || !link.hash) return;
+        const targetId = link.hash;
+        
+        // Kiểm tra nếu href chỉ có dấu # thì bỏ qua hoặc cuộn lên đầu trang
+        if (targetId === '#') {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          return;
+        }
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          history.pushState(null, '', targetId);
+          // Thực hiện trượt mượt mà đến phần tử đích
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll('button').forEach(button => {
+      const label = button.textContent.trim();
+      if (label.includes('Xuất') || label.includes('Tải Báo Cáo')) {
+        button.addEventListener('click', () => window.print());
+      } else if (label.includes('Tùy Biến')) {
+        button.addEventListener('click', () => {
+          button.classList.toggle('bg-emerald-600');
+          button.classList.toggle('bg-slate-900');
+          button.querySelector('span:last-child').textContent = button.classList.contains('bg-emerald-600') ? 'Đang tùy biến' : 'Tùy Biến Dữ Liệu';
+        });
+      } else if (label.includes('notifications')) {
+        button.addEventListener('click', () => {
+          button.classList.toggle('bg-emerald-50');
+          button.classList.toggle('text-emerald-700');
+          button.title = button.classList.contains('bg-emerald-50') ? 'Đã đánh dấu thông báo' : 'Thông báo';
+        });
+      } else if (label.includes('Hôm nay') || label.includes('7 ngày') || label.includes('Quý')) {
+        button.addEventListener('click', () => {
+          button.parentElement.querySelectorAll('button').forEach(item => item.className = 'px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition-colors');
+          button.className = 'px-3 py-1 rounded-lg bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/60';
+        });
+      } else if (label.includes('Xem toàn bộ')) {
+        button.addEventListener('click', () => button.closest('section')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

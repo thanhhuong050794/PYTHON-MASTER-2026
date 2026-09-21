@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html class="light" lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>InsightBI - Doanh nghiệp</title>
+  
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+  
+  <style>
+    @layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } }
+    ::-webkit-scrollbar { display: none; }
+    @keyframes page-enter { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    body { animation: page-enter 420ms ease-out both; }
+    aside nav a { transition: color 180ms ease, background-color 180ms ease, transform 180ms ease; }
+    aside nav a:hover { transform: translateX(3px); }
+    main > * { animation: page-enter 420ms ease-out both; }
+    main > *:nth-child(2) { animation-delay: 60ms; }
+    main > *:nth-child(3) { animation-delay: 120ms; }
+    main > *:nth-child(4) { animation-delay: 180ms; }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 1ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: 1ms !important; }
+    }
+    section[id^="sec-"] { scroll-margin-top: 5.5rem; }
+  </style>
+  
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: { colors: { primary: { DEFAULT: '#4338ca', 50: '#eef2ff', 100: '#e0e7ff', 500: '#6366f1', 600: '#4f46e5', 700: '#4338ca', 800: '#3730a3' } }, fontFamily: { body: ['Inter', 'sans-serif'], display: ['Plus Jakarta Sans', 'sans-serif'] } } }
+    };
+  </script>
+</head>
+
+<body class="bg-slate-50 font-body text-slate-800 antialiased selection:bg-primary-100 selection:text-primary-700">
+
+  <!--  SIDEBAR CHUNG -->
+<!-- SIDEBAR -->
+<aside class="fixed left-0 top-0 h-full w-72 bg-white border-r border-slate-200 z-50 flex flex-col shadow-sm">
+  <div class="h-16 px-5 flex items-center gap-3 border-b border-slate-100 bg-white">
+    <img alt="InsightBI Logo" class="h-9 w-9 rounded-xl object-contain shadow-sm border border-indigo-100" src="https://lh3.googleusercontent.com/aida/AEtjO1XzLKEiIJ_QF7rbiSAAPXEESl9NVRRi66wWFdJOK5weol-oEyAN7AwxZLwTeeeGLsGjkDrNGIbaMXk5WUnII8KA68HtN-hnj4FgzzYhuaoOnp8oH2SCMTzMK2X33Sut0DtKq07mL8iLrGSvKhRQKU6_FAztv3mFhXvEKT63qVAwFZE0Fn6JeVA45ctIUhiU_K-zuF1CmC4gbor_zNQJR1fpRFJ98oNx6VmCeLv7MKi4Nxq3QM7J7liZ9v2w">
+    <div class="flex flex-col">
+      <span class="font-display font-bold text-slate-900 tracking-tight text-base leading-tight">InsightBI Platform</span>
+      <span class="font-display text-[10px] font-bold text-primary-600 tracking-wider uppercase">EduMetrics Intelligence</span>
+    </div>
+  </div>
+  
+  <div class="flex-1 overflow-y-auto px-3.5 py-4 space-y-6">
+    
+    <!-- DOANH NGHIỆP -->
+    <nav class="space-y-1">
+      <div class="px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-slate-400">Doanh nghiệp</div>
+      <a href="doanh-nghiep.html#sec-location" class="flex items-center gap-2.5 px-3 py-2 rounded-xl bg-primary-50 text-primary-700 font-semibold text-sm transition-colors">
+        <span class="material-symbols-outlined text-xl text-primary-600">groups</span><span>Số lượng thí sinh</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-doanh-thu-tinh-thanh" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">payments</span><span>Doanh thu</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-xu-huong-ngay" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">trending_up</span><span>Xu hướng đăng ký & doanh thu</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-funnel" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">filter_alt</span><span>Phễu chuyển đổi</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-commission" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">account_balance_wallet</span><span>Doanh thu & Hoa hồng</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-telesale" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">call</span><span>Hiệu quả Telesale</span>
+      </a>
+      <a href="doanh-nghiep.html#sec-sponsors" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">handshake</span><span>Truyền thông & Nhà tài trợ</span>
+      </a>
+    </nav>
+
+    <!-- TRƯỜNG ĐẠI HỌC -->
+    <nav class="space-y-1">
+      <div class="px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-slate-400">Trường Đại học</div>
+      <a href="dai-hoc.html#sec-top-candidates" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">military_tech</span><span>Top % Thí sinh Xuất sắc</span>
+      </a>
+      <a href="dai-hoc.html#sec-workforce" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">groups</span><span>Nhân lực & Cơ cấu độ tuổi</span>
+      </a>
+      <a href="dai-hoc.html#sec-tuyen-sinh-that" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">public</span><span>Tuyển sinh</span>
+      </a>
+      <a href="dai-hoc.html#sec-roi-nguon" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">donut_large</span><span>ROI theo nguồn (UTM)</span>
+      </a>
+      <a href="dai-hoc.html#sec-do-tuoi-hang" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">bar_chart</span><span>Độ tuổi & Phân hạng</span>
+      </a>
+      <a href="dai-hoc.html#sec-nhan-tai-truong" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">query_stats</span><span>Định vị nhân tài theo trường</span>
+      </a>
+    </nav>
+
+    <!-- TRƯỜNG THPT -->
+    <nav class="space-y-1">
+      <div class="px-3 py-1 font-display text-[11px] font-bold uppercase tracking-wider text-slate-400">Trường THPT</div>
+      
+      <!-- Các mục được thêm mới -->
+      <a href="thpt.html#sec-phan-tich-diem" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">stacked_line_chart</span><span>Phân tích điểm</span>
+      </a>
+      <a href="thpt.html#sec-nang-luc-lap-trinh" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">code</span><span>Năng lực lập trình</span>
+      </a>
+      <a href="thpt.html#sec-minh-chung-nang-luc" class="flex items-center gap-2.5 px-3 py-2 rounded-xl text-slate-600 hover:bg-slate-100 hover:text-slate-900 text-sm font-medium transition-colors">
+        <span class="material-symbols-outlined text-xl text-slate-400">verified</span><span>Minh chứng năng lực</span>
+      </a>
+    </nav>
+
+  </div>
+</aside>
+
+  <!-- ================= VÙNG HIỂN THỊ CHÍNH ================= -->
+  <div class="pl-72 min-h-screen bg-slate-50">
+    
+    <!-- TOP HEADER -->
+<header class="fixed top-0 left-72 right-0 h-16 bg-white/95 backdrop-blur-md border-b border-slate-200 z-40 flex items-center justify-between px-8 shadow-xs">
+  
+  <!-- CỘT TRÁI: THANH TÌM KIẾM -->
+  <div class="flex items-center gap-4 flex-1 max-w-lg">
+    <div class="relative w-full flex items-center">
+      <span class="material-symbols-outlined absolute left-3.5 text-slate-400 text-lg pointer-events-none">search</span>
+      <input class="w-full bg-slate-100 hover:bg-slate-100/80 text-slate-800 placeholder:text-slate-400 text-xs pl-10 pr-4 py-2 rounded-xl border border-transparent focus:border-primary-500 focus:bg-white focus:outline-none transition-all" placeholder="Tìm nhanh chỉ số, thí sinh, đối tác... (Ctrl + K)" type="text">
+    </div>
+  </div>
+
+  <!-- CỘT PHẢI: BỘ LỌC THỜI GIAN, THÔNG BÁO & NÚT XUẤT PDF -->
+  <div class="flex items-center gap-3">
+    
+    <!-- Bộ lọc thời gian -->
+    <div class="hidden xl:flex items-center bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs">
+      <button class="px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition-colors" type="button">Hôm nay</button>
+      <button class="px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition-colors" type="button">7 ngày qua</button>
+      <button class="px-3 py-1 rounded-lg bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/60" type="button">Quý 1/2025</button>
+    </div>
+
+    <!-- Nút Xuất Báo Cáo PDF -->
+    <button class="flex items-center gap-1.5 bg-primary-600 hover:bg-primary-700 text-white font-semibold text-xs px-3.5 py-2 rounded-xl shadow-xs transition-colors" type="button">
+      <span class="material-symbols-outlined text-base">download</span>
+      <span>Xuất Báo Cáo PDF</span>
+    </button>
+
+    <!-- Nút Chuông Thông Báo (có chấm xanh) -->
+    <button class="relative p-2 rounded-xl text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition-colors" type="button">
+      <span class="material-symbols-outlined text-xl">notifications</span>
+      <span class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-500"></span>
+    </button>
+
+  </div>
+</header>
+
+    <!-- NỘI DUNG TỪNG TRANG SẼ DÁN VÀO ĐÂY -->
+    <main class="w-full pt-20 px-8 py-7 space-y-7">
+      
+   <!-- EXECUTIVE HERO BAR -->
+<div class="relative overflow-hidden bg-white border border-slate-200 rounded-2xl p-6 shadow-xs">
+  <div class="flex flex-col xl:flex-row items-start xl:items-center justify-between gap-5">
+    <div class="space-y-1 max-w-3xl">
+      <div class="flex items-center gap-2 text-xs font-medium text-slate-500">
+        <span class="hover:text-primary-600 cursor-pointer">Báo cáo Điều hành</span>
+        <span>/</span>
+        <span class="text-primary-600 font-semibold">EduMetrics & Business Intelligence</span>
+        <span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-emerald-50 border border-emerald-200 text-emerald-700 font-semibold text-[11px]"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>Live Analytics</span>
+      </div>
+      <h1 class="font-display font-extrabold text-2xl lg:text-3xl text-slate-900 tracking-tight">BẢNG ĐIỀU KHIỂN & BÁO CÁO PHÂN TÍCH SỐ LIỆU TOÀN DIỆN</h1>
+      <p class="text-xs text-slate-500 font-normal">Báo cáo hợp nhất số liệu doanh thu chuyển đổi, hiệu suất tuyển sinh, phân bổ nguyện vọng thí sinh và đo lường ROI mạng lưới truyền thông.</p>
+    </div>
+    <div class="flex flex-wrap items-center gap-2.5">
+      <div class="relative min-w-[170px]">
+        <select class="w-full bg-slate-50 text-slate-800 font-semibold text-xs px-3 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-primary-500 focus:bg-white transition-colors appearance-none cursor-pointer pr-8 shadow-xs">
+          <option>Kỳ 2024 - 2025</option>
+          <option>Kỳ 2023 - 2024</option>
+        </select>
+        <span class="material-symbols-outlined absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none text-base">expand_more</span>
+      </div>
+      <button class="flex items-center gap-1.5 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-xs px-4 py-2.5 rounded-xl shadow-xs transition-colors" type="button"><span class="material-symbols-outlined text-base">tune</span><span>Tùy Biến Dữ Liệu</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+  <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:border-primary-300 transition-all">
+    <div class="flex items-start justify-between">
+      <div><span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider">Tổng số đăng ký</span><h3 class="text-sm font-semibold text-slate-700 mt-0.5">Tổng số thí sinh đăng ký</h3></div>
+      <div class="p-2.5 bg-primary-50 text-primary-600 rounded-xl border border-primary-100"><span class="material-symbols-outlined text-xl">payments</span></div>
+    </div>
+    <div class="my-3"><div class="font-display font-extrabold text-2xl lg:text-[26px] text-slate-900 tracking-tight">97</div></div>
+    <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-xs"><span class="inline-flex items-center gap-1 font-bold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-md border border-indigo-100 text-[11px]"><span class="material-symbols-outlined text-xs">groups</span>97 hồ sơ</span><span class="text-slate-400 text-[11px]">Tổng đăng ký</span></div>
+  </div>
+  <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:border-secondary-300 transition-all">
+    <div class="flex items-start justify-between">
+      <div><span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider">Đã thanh toán</span><h3 class="text-sm font-semibold text-slate-700 mt-0.5">Tổng hồ sơ đã thanh toán</h3></div>
+      <div class="p-2.5 bg-sky-50 text-sky-600 rounded-xl border border-sky-100"><span class="material-symbols-outlined text-xl">point_of_sale</span></div>
+    </div>
+    <div class="my-3"><div class="font-display font-extrabold text-2xl lg:text-[26px] text-slate-900 tracking-tight">15</div></div>
+    <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-xs"><span class="inline-flex items-center gap-1 font-bold text-sky-700 bg-sky-50 px-2 py-0.5 rounded-md border border-sky-100 text-[11px]"><span class="material-symbols-outlined text-xs">check_circle</span>15 hồ sơ</span><span class="text-slate-400 text-[11px]">Đã thanh toán</span></div>
+  </div>
+  <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:border-emerald-300 transition-all">
+    <div class="flex items-start justify-between">
+      <div><span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider">Tỉ lệ chuyển đổi</span><h3 class="text-sm font-semibold text-slate-700 mt-0.5">Tỷ lệ thanh toán thành công</h3></div>
+      <div class="p-2.5 bg-emerald-50 text-emerald-600 rounded-xl border border-emerald-100"><span class="material-symbols-outlined text-xl">ballot</span></div>
+    </div>
+    <div class="my-3 flex items-baseline justify-between"><div class="font-display font-extrabold text-2xl lg:text-[26px] text-slate-900 tracking-tight">15,5%</div><span class="text-xs bg-emerald-100 text-emerald-800 border border-emerald-200 px-2 py-0.5 rounded-full font-bold">15 / 97</span></div>
+    <div class="space-y-1"><div class="flex justify-between text-[11px] text-slate-600 font-semibold"><span>Tiến độ chuyển đổi</span><span class="text-emerald-700">15,5%</span></div><div class="w-full bg-slate-100 h-1.5 rounded-full overflow-hidden"><div class="bg-emerald-600 h-full rounded-full" style="width: 15.5%"></div></div></div>
+  </div>
+  <div class="bg-white border border-slate-200 rounded-2xl p-5 shadow-xs flex flex-col justify-between hover:border-indigo-300 transition-all">
+    <div class="flex items-start justify-between">
+      <div><span class="text-[11px] font-bold uppercase text-slate-400 tracking-wider">Doanh thu thực tế</span><h3 class="text-sm font-semibold text-slate-700 mt-0.5">Doanh thu thực tế (đã thu)</h3></div>
+      <div class="p-2.5 bg-indigo-50 text-indigo-600 rounded-xl border border-indigo-100"><span class="material-symbols-outlined text-xl">grade</span></div>
+    </div>
+    <div class="my-3 flex items-baseline justify-between"><div class="flex items-baseline gap-1"><span class="font-display font-extrabold text-2xl lg:text-[26px] text-slate-900 tracking-tight">7.500.000</span><span class="text-sm text-slate-400 font-semibold">₫</span></div><span class="text-xs bg-indigo-100 text-indigo-800 border border-indigo-200 px-2 py-0.5 rounded-full font-bold">Đã thu</span></div>
+    <div class="flex items-center justify-between pt-1 border-t border-slate-100 text-xs"><span class="text-slate-600 font-semibold text-[11px]">Tổng doanh thu</span><span class="font-bold text-emerald-700 text-[11px]">7.500.000 ₫</span></div>
+  </div>
+</div>
+
+<!-- PHỄU CHUYỂN ĐỔI (ĐĂNG KÝ -> THANH TOÁN) -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-funnel">
+  <div class="w-full lg:w-2/3 mx-auto bg-white p-4 border border-slate-200 rounded-xl">
+    <div class="relative h-[400px]">
+      <canvas id="conversionFunnelChart" aria-label="Biểu đồ phễu chuyển đổi: Đăng ký -> Thanh toán"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- SỐ LƯỢNG THÍ SINH THEO TỈNH/THÀNH -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-location">
+  <div class="w-full mx-auto bg-white p-4">
+    <div class="relative h-[450px]">
+      <canvas id="locationBarChart" aria-label="Biểu đồ Số lượng thí sinh theo Tỉnh/Thành"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- SỐ LƯỢNG THÍ SINH THEO TRƯỜNG -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-school">
+  <div class="w-full mx-auto bg-white p-4">
+    <div class="relative h-[450px]">
+      <canvas id="schoolBarChart" aria-label="Biểu đồ Số lượng thí sinh theo Trường"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- SỐ LƯỢNG THÍ SINH THEO BẢNG THI -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-bang-thi">
+  <div class="w-full mx-auto bg-white p-4">
+    <div class="relative h-[450px]">
+      <canvas id="bangThiBarChart" aria-label="Biểu đồ Số lượng thí sinh theo Bảng thi"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- DOANH THU THEO TỈNH/THÀNH (ĐÃ THANH TOÁN) -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-doanh-thu-tinh-thanh">
+  <div class="w-full mx-auto bg-white p-4">
+    <div class="relative h-[450px]">
+      <canvas id="doanhThuTinhThanhBarChart" aria-label="Biểu đồ Doanh thu theo Tỉnh/Thành (đã thanh toán)"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- DOANH THU THEO TRƯỜNG (ĐÃ THANH TOÁN) -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-doanh-thu-truong">
+  <div class="w-full mx-auto bg-white p-4">
+    <div class="relative h-[450px]">
+      <canvas id="doanhThuTruongBarChart" aria-label="Biểu đồ Doanh thu theo Trường (đã thanh toán)"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- DOANH THU THEO BẢNG THI (ĐÃ THANH TOÁN) -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-doanh-thu-bang-thi">
+  <div class="w-full mx-auto bg-white p-4">
+    <div class="relative h-[450px]">
+      <canvas id="doanhThuBangThiBarChart" aria-label="Biểu đồ Doanh thu theo Bảng thi (đã thanh toán)"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- XU HƯỚNG ĐĂNG KÝ VÀ DOANH THU THEO NGÀY -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs mb-7" id="sec-xu-huong-ngay">
+  <div class="w-full mx-auto bg-white p-4">
+    <div class="relative h-[450px]">
+      <canvas id="xuHuongNgayChart" aria-label="Biểu đồ Xu hướng đăng ký và doanh thu theo ngày"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE & COMMISSION -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs space-y-5" id="sec-commission">
+  <div class="flex items-center justify-between gap-4 pb-4 border-b border-slate-100">
+    <div class="flex items-start gap-3">
+      <span class="p-2.5 rounded-xl bg-emerald-50 text-emerald-600 border border-emerald-200"><span class="material-symbols-outlined text-2xl">account_balance_wallet</span></span>
+      <div>
+        <h2 class="font-display font-bold text-lg text-slate-900">Báo Cáo Doanh Thu & Hoa Hồng</h2>
+        <p class="text-xs text-slate-500 mt-0.5">Theo dõi doanh thu ghi nhận, hoa hồng phát sinh và tiến độ thanh toán.</p>
+      </div>
+    </div>
+    <span class="bg-emerald-50 border border-emerald-200 text-emerald-700 px-3 py-1.5 rounded-lg text-xs font-bold">Quý 1/2025</span>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl"><span class="text-[11px] font-bold uppercase text-slate-400">Hoa hồng đối tác</span><div class="font-display font-extrabold text-2xl text-slate-900 mt-2">150.000 ₫</div><span class="text-xs text-amber-600 font-bold">Tổng hoa hồng đối tác</span></div>
+    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl"><span class="text-[11px] font-bold uppercase text-slate-400">Doanh thu công ty giữ lại</span><div class="font-display font-extrabold text-2xl text-primary-700 mt-2">7.350.000 ₫</div><span class="text-xs text-sky-700 font-bold">Sau khi trừ hoa hồng</span></div>
+    <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl"><span class="text-[11px] font-bold uppercase text-slate-400">Số người chưa thanh toán</span><div class="font-display font-extrabold text-2xl text-emerald-600 mt-2">82</div><span class="text-xs text-slate-500 font-bold">Cần tiếp tục theo dõi</span></div>
+  </div>
+  <div class="border border-slate-200 rounded-xl p-4 bg-white">
+    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+      <div><h3 class="font-display font-bold text-base text-slate-900">Doanh thu & Hoa hồng theo ngày</h3><p class="text-[11px] text-slate-500">Rê chuột lên điểm dữ liệu hoặc tắt/bật đường trong chú giải để xem chi tiết.</p></div>
+      <div class="inline-flex bg-slate-100 p-1 rounded-lg border border-slate-200 text-xs"><button class="commission-range px-3 py-1 rounded-md bg-white text-slate-900 font-semibold shadow-xs" data-days="7" type="button">7 ngày</button><button class="commission-range px-3 py-1 rounded-md text-slate-600" data-days="14" type="button">14 ngày</button></div>
+    </div>
+    <div class="relative h-72"><canvas id="commission-chart" aria-label="Biểu đồ doanh thu và hoa hồng theo ngày"></canvas></div>
+  </div>
+  <div class="border border-slate-200 rounded-xl p-4 bg-white">
+    <div class="flex items-center justify-between mb-3"><div><h3 class="font-display font-bold text-base text-slate-900">So sánh số lượng đăng ký theo thời gian: Bảng A vs Bảng B</h3><p class="text-[11px] text-slate-500">Bấm vào điểm dữ liệu hoặc tắt/bật nhóm trong chú giải để xem chi tiết.</p></div><span class="material-symbols-outlined text-primary-600 text-xl">show_chart</span></div>
+    <div class="relative h-80"><canvas id="registration-by-board-chart" aria-label="Biểu đồ so sánh số lượng đăng ký Bảng A và Bảng B theo ngày"></canvas></div>
+    <div id="registration-detail" class="mt-3 min-h-12 p-3 rounded-lg bg-slate-50 border border-slate-200 text-xs opacity-0 transition-opacity" aria-live="polite"><span class="text-slate-600">Đã chọn: </span><span class="font-bold text-slate-900" id="registration-detail-label"></span><span class="ml-2 font-display font-extrabold text-primary-700" id="registration-detail-value"></span></div>
+  </div>
+</section>
+
+<!-- COMPETITION RESULTS -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs" id="sec-results">
+  <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+    <div><h3 class="font-display font-bold text-base text-slate-900">Kết quả cuộc thi</h3><p class="text-xs text-slate-500 mt-1">Tỷ lệ chuyển tiếp qua từng vòng tuyển dụng.</p></div>
+    <span class="material-symbols-outlined text-indigo-600 text-xl">analytics</span>
+  </div>
+  <div class="grid grid-cols-1 md:grid-cols-[minmax(260px,1fr)_minmax(240px,0.8fr)] items-center gap-8 pt-5">
+    <div class="flex flex-col items-center gap-0.5" aria-label="Biểu đồ phễu tuyển dụng">
+      <button class="funnel-stage w-full h-20 bg-indigo-700 transition-opacity" data-stage="total" style="clip-path: polygon(0 0, 100% 0, 82% 100%, 18% 100%);" type="button" aria-label="Tổng số thí sinh"></button>
+      <button class="funnel-stage w-[64%] h-20 bg-blue-400 transition-opacity" data-stage="qualifying" style="clip-path: polygon(14% 0, 86% 0, 68% 100%, 32% 100%);" type="button" aria-label="Qua vòng loại"></button>
+      <button class="funnel-stage w-[27%] h-20 bg-teal-400 transition-opacity" data-stage="final" style="clip-path: polygon(22% 0, 78% 0, 50% 100%, 50% 100%);" type="button" aria-label="Lọt chung kết"></button>
+    </div>
+    <div id="funnel-detail" class="min-h-24 p-4 rounded-xl bg-indigo-50 border border-indigo-100 opacity-0 transition-opacity" aria-live="polite">
+      <div class="text-sm font-bold text-slate-900" id="funnel-detail-label"></div>
+      <div class="text-lg font-display font-extrabold text-indigo-600" id="funnel-detail-value"></div>
+    </div>
+  </div>
+  <div class="flex items-center justify-between mt-5 pt-3 border-t border-slate-100 text-xs text-rose-600 font-semibold"><span class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">arrow_downward</span>Drop-off qua bài lọc</span><span>-72.9% (-11.430 thí sinh)</span></div>
+</section>
+
+<!-- TELESALE -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs" id="sec-telesale">
+  <h2 class="font-display font-bold text-lg mb-4">Hiệu Quả Telesale & Tư Vấn Trực Tiếp</h2>
+  <div class="grid grid-cols-3 gap-4 mb-4">
+    <div class="p-3 bg-slate-50 rounded-xl text-center"><span class="text-[10px] font-bold text-slate-400 uppercase">Tổng Cuộc Gọi</span><div class="font-bold text-xl mt-1">34.200</div></div>
+    <div class="p-3 bg-slate-50 rounded-xl text-center"><span class="text-[10px] font-bold text-slate-400 uppercase">Tỷ Lệ Nhấc Máy</span><div class="font-bold text-xl text-sky-600 mt-1">76.5%</div></div>
+    <div class="p-3 bg-slate-50 rounded-xl text-center"><span class="text-[10px] font-bold text-slate-400 uppercase">Thời Lượng TB</span><div class="font-bold text-xl mt-1">3m 42s</div></div>
+  </div>
+</section>
+
+<!-- SPONSORS -->
+<section class="bg-white border border-slate-200 rounded-2xl p-6 shadow-xs" id="sec-sponsors">
+  <div class="flex items-center gap-3 mb-6">
+    <span class="p-2.5 rounded-xl bg-sky-50 text-sky-600 border border-sky-200"><span class="material-symbols-outlined text-2xl">campaign</span></span>
+    <div>
+      <h2 class="font-display font-bold text-lg text-slate-900">Báo Cáo Hiệu Quả Truyền Thông & Nhà Tài Trợ Cuộc Thi</h2>
+      <p class="text-xs text-slate-500 mt-0.5">Đo lường Impressions & CTR của Hệ sinh thái</p>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-5">
+    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl"><span class="text-[11px] font-bold uppercase text-slate-400">Tổng Lượt Tiếp Cận</span><div class="font-display font-extrabold text-2xl text-slate-900 mt-2">2.85M</div></div>
+    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl"><span class="text-[11px] font-bold uppercase text-slate-400">Độc Giả (Unique Reach)</span><div class="font-display font-extrabold text-2xl text-slate-900 mt-2">1.42M</div></div>
+    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl"><span class="text-[11px] font-bold uppercase text-slate-400">Clicks Logo/Banner</span><div class="font-display font-extrabold text-2xl text-primary-700 mt-2">68.450</div></div>
+    <div class="p-5 bg-slate-50 border border-slate-200 rounded-xl"><span class="text-[11px] font-bold uppercase text-slate-400">Tỷ Lệ Click (CTR)</span><div class="font-display font-extrabold text-2xl text-amber-600 mt-2">4.8%</div></div>
+  </div>
+</section>
+
+    </main>
+  </div>
+
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const commissionSection = document.querySelector('#sec-commission');
+    const funnelSection = document.querySelector('#sec-funnel');
+    if (commissionSection && funnelSection) {
+      funnelSection.parentNode.insertBefore(funnelSection, commissionSection);
+    }
+
+    const setActiveSidebarLink = link => {
+      document.querySelectorAll('aside nav a').forEach(item => {
+        item.classList.remove('bg-primary-50', 'text-primary-700', 'font-semibold');
+        item.classList.add('text-slate-600', 'font-medium');
+        const icon = item.querySelector('.material-symbols-outlined');
+        if (icon) {
+          icon.classList.remove('text-primary-600');
+          icon.classList.add('text-slate-400');
+        }
+      });
+      if (!link) return;
+      link.classList.remove('text-slate-600', 'font-medium');
+      link.classList.add('bg-primary-50', 'text-primary-700', 'font-semibold');
+      const icon = link.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.classList.remove('text-slate-400');
+        icon.classList.add('text-primary-600');
+      }
+    };
+
+    const businessNav = document.querySelectorAll('aside nav')[0];
+    const matchingLink = [...businessNav.querySelectorAll('a')].find(link => {
+      const url = new URL(link.href, window.location.href);
+      return url.pathname === window.location.pathname && url.hash === window.location.hash;
+    });
+    setActiveSidebarLink(matchingLink || businessNav.querySelector('a'));
+
+    document.querySelectorAll('aside nav a').forEach(link => {
+      link.addEventListener('click', function () {
+        const destination = new URL(this.href, window.location.href);
+        if (destination.pathname !== window.location.pathname) return;
+        setActiveSidebarLink(this);
+      });
+    });
+
+    const commissionCanvas = document.querySelector('#commission-chart');
+    if (commissionCanvas && window.Chart) {
+      const labels = ['2026-07-21', '2026-07-22', '2026-07-23', '2026-07-24', '2026-07-25', '2026-07-26', '2026-07-27', '2026-07-28', '2026-07-29', '2026-07-30', '2026-07-31', '2026-08-01', '2026-08-02', 'Không rõ'];
+      const revenue = [0, 1000000, 0, 0, 0, 0, 1000000, 0, 0, 1500000, 2000000, 500000, 500000, 1000000];
+      const commission = [0, 20000, 0, 0, 0, 0, 20000, 0, 0, 30000, 40000, 10000, 10000, 20000];
+      const formatCurrency = value => new Intl.NumberFormat('vi-VN').format(value) + ' ₫';
+      const chart = new Chart(commissionCanvas, {
+        type: 'line',
+        data: { labels, datasets: [
+          { label: 'Doanh thu thực tế', data: revenue, borderColor: '#d09a25', backgroundColor: '#d09a25', borderWidth: 2.5, pointRadius: 4, pointHoverRadius: 7, tension: 0.35, yAxisID: 'revenue' },
+          { label: 'Hoa hồng đối tác', data: commission, borderColor: '#2563eb', backgroundColor: '#2563eb', borderWidth: 3, pointRadius: 5, pointHoverRadius: 8, pointStyle: 'rectRot', tension: 0.35, yAxisID: 'revenue' }
+        ] },
+        options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'top', align: 'end', labels: { usePointStyle: true, boxWidth: 8, font: { family: 'Inter', size: 11 } } }, tooltip: { callbacks: { label: context => `${context.dataset.label}: ${formatCurrency(context.parsed.y)}` } } }, scales: { x: { grid: { display: false }, ticks: { font: { size: 10 }, maxRotation: 45 } }, revenue: { beginAtZero: true, position: 'left', ticks: { callback: value => `${value / 1000000}M`, font: { size: 10 } }, title: { display: true, text: 'VNĐ', font: { size: 10 } } } } }
+      });
+      document.querySelectorAll('.commission-range').forEach(button => button.addEventListener('click', () => {
+        document.querySelectorAll('.commission-range').forEach(item => item.className = 'commission-range px-3 py-1 rounded-md text-slate-600');
+        button.className = 'commission-range px-3 py-1 rounded-md bg-white text-slate-900 font-semibold shadow-xs';
+        const days = Number(button.dataset.days);
+        chart.data.labels = days === 7 ? labels.slice(-7) : labels;
+        chart.data.datasets[0].data = days === 7 ? revenue.slice(-7) : revenue;
+        chart.data.datasets[1].data = days === 7 ? commission.slice(-7) : commission;
+        chart.update();
+      }));
+    }
+
+    const registrationCanvas = document.querySelector('#registration-by-board-chart');
+    if (registrationCanvas && window.Chart) {
+      const registrationLabels = ['2026-07-21', '2026-07-22', '2026-07-23', '2026-07-24', '2026-07-25', '2026-07-26', '2026-07-27', '2026-07-28', '2026-07-29', '2026-07-30', '2026-07-31', '2026-08-01', '2026-08-02'];
+      const boardARegistrations = [2, 2, 2, 1, 1, 1, 1, 1, 2, 4, 1, 3, 3];
+      const boardBRegistrations = [2, 4, 2, 1, 2, 1, 6, 1, 15, 14, 7, 4, 4];
+      registrationCanvas.style.cursor = 'pointer';
+      let registrationChart;
+      registrationChart = new Chart(registrationCanvas, {
+        type: 'line',
+        data: { labels: registrationLabels, datasets: [
+          { label: 'Bảng B', data: boardBRegistrations, borderColor: '#1976c5', backgroundColor: '#1976c5', pointBackgroundColor: '#1976c5', borderWidth: 2, pointRadius: 4, pointHoverRadius: 7, tension: 0.15 },
+          { label: 'Bảng A', data: boardARegistrations, borderColor: '#f97316', backgroundColor: '#f97316', pointBackgroundColor: '#f97316', borderWidth: 2, pointRadius: 4, pointHoverRadius: 7, tension: 0.15 }
+        ] },
+        options: { responsive: true, maintainAspectRatio: false, interaction: { mode: 'index', intersect: false }, onClick: (event, elements) => { if (!elements.length) return; const point = elements[0]; const dataset = registrationChart.data.datasets[point.datasetIndex]; document.querySelector('#registration-detail-label').textContent = `${dataset.label} - ${registrationChart.data.labels[point.index]}`; document.querySelector('#registration-detail-value').textContent = `${dataset.data[point.index]} đăng ký`; document.querySelector('#registration-detail').classList.remove('opacity-0'); }, plugins: { legend: { position: 'top', align: 'center', labels: { usePointStyle: true, boxWidth: 8, padding: 14, font: { family: 'Inter', size: 11 } } }, tooltip: { callbacks: { label: context => `${context.dataset.label}: ${context.parsed.y} đăng ký` } } }, scales: { x: { grid: { borderDash: [4, 4] }, ticks: { maxRotation: 45, minRotation: 45, font: { size: 10 } }, title: { display: true, text: 'Ngày', font: { size: 10 } } }, y: { beginAtZero: true, ticks: { stepSize: 2, font: { size: 10 } }, title: { display: true, text: 'Số lượng đăng ký', font: { size: 10 } } } } }
+      });
+    }
+
+    const revenueByBoardCanvas = document.querySelector('#revenue-by-board-chart');
+    if (revenueByBoardCanvas && window.Chart) {
+      const formatBoardCurrency = value => new Intl.NumberFormat('vi-VN').format(value) + ' ₫';
+      revenueByBoardCanvas.style.cursor = 'pointer';
+      const boardRevenueChart = new Chart(revenueByBoardCanvas, {
+        type: 'bar',
+        data: { labels: ['Bảng A', 'Bảng B'], datasets: [{ label: 'Doanh thu thực tế', data: [1500000, 6000000], backgroundColor: '#d09a25', borderRadius: 3, hoverBackgroundColor: '#b58116', barPercentage: 0.55, categoryPercentage: 0.7 }] },
+        options: { responsive: true, maintainAspectRatio: false, onClick: (event, elements) => { if (!elements.length) return; const index = elements[0].index; document.querySelector('#board-revenue-label').textContent = boardRevenueChart.data.labels[index]; document.querySelector('#board-revenue-value').textContent = formatBoardCurrency(boardRevenueChart.data.datasets[0].data[index]); document.querySelector('#board-revenue-detail').classList.remove('opacity-0'); boardRevenueChart.data.datasets[0].backgroundColor = boardRevenueChart.data.labels.map((_, itemIndex) => itemIndex === index ? '#b58116' : '#d09a25'); boardRevenueChart.update(); }, plugins: { legend: { position: 'top', align: 'end', labels: { usePointStyle: true, boxWidth: 10, font: { family: 'Inter', size: 11 } } }, tooltip: { callbacks: { label: context => `${context.dataset.label}: ${formatBoardCurrency(context.parsed.y)}` } } }, scales: { x: { title: { display: true, text: 'Bảng', font: { size: 10 } }, grid: { display: false } }, y: { beginAtZero: true, title: { display: true, text: 'VNĐ', font: { size: 10 } }, ticks: { callback: value => `${value / 1000000}M`, font: { size: 10 } } } } }
+      });
+    }
+
+    const revenueBySchoolCanvas = document.querySelector('#revenue-by-school-chart');
+    if (revenueBySchoolCanvas && window.Chart) {
+      const schoolLabels = ['Học viện Công nghệ Bưu chính Viễn thông (PTIT)', 'THPT Chu Văn An', 'THPT Kim Liên', 'THPT Lê Quý Đôn', 'THPT Lương Thế Vinh', 'THPT Nguyễn Huệ', 'THPT Nguyễn Thị Minh Khai', 'THPT Trần Hưng Đạo', 'THPT Trần Phú', 'THPT Việt Đức', 'Đại học Bách Khoa Hà Nội', 'Đại học Bách Khoa TP.HCM', 'Đại học CNTT - ĐHQG TP.HCM', 'Đại học Công nghiệp Hà Nội', 'Đại học Công nghệ - ĐHQGHN', 'Đại học Duy Tân', 'Đại học FPT', 'Đại học Khoa học Tự nhiên TP.HCM', 'Đại học Kinh tế Quốc dân', 'Đại học Sư phạm Kỹ thuật TP.HCM', 'Đại học Việt - Hàn (Đà Nẵng)'];
+      const schoolRevenue = [0, 500000, 0, 0, 500000, 0, 0, 0, 500000, 0, 0, 1000000, 0, 500000, 500000, 500000, 1000000, 0, 500000, 1000000, 1000000];
+      const schoolCommission = [0, 10000, 0, 0, 10000, 0, 0, 0, 10000, 0, 0, 20000, 0, 10000, 10000, 10000, 20000, 0, 10000, 20000, 20000];
+      const formatSchoolCurrency = value => new Intl.NumberFormat('vi-VN').format(value) + ' ₫';
+      revenueBySchoolCanvas.style.cursor = 'pointer';
+      const schoolChart = new Chart(revenueBySchoolCanvas, {
+        type: 'bar',
+        data: { labels: schoolLabels, datasets: [
+          { label: 'Doanh thu thực tế', data: schoolRevenue, backgroundColor: '#d09a25', borderRadius: 3, barPercentage: 0.7, categoryPercentage: 0.8 },
+          { label: 'Hoa hồng đối tác', data: schoolCommission, backgroundColor: '#2563eb', borderRadius: 3, barPercentage: 0.7, categoryPercentage: 0.8 }
+        ] },
+        options: { indexAxis: 'y', responsive: true, maintainAspectRatio: false, onClick: (event, elements) => { if (!elements.length) return; const index = elements[0].index; document.querySelector('#school-revenue-label').textContent = schoolChart.data.labels[index]; document.querySelector('#school-revenue-value').textContent = `Doanh thu: ${formatSchoolCurrency(schoolRevenue[index])}`; document.querySelector('#school-commission-value').textContent = `Hoa hồng: ${formatSchoolCurrency(schoolCommission[index])}`; document.querySelector('#school-revenue-detail').classList.remove('opacity-0'); }, plugins: { legend: { position: 'top', align: 'end', labels: { usePointStyle: true, boxWidth: 9, font: { family: 'Inter', size: 11 } } }, tooltip: { callbacks: { label: context => `${context.dataset.label}: ${formatSchoolCurrency(context.parsed.x)}` } } }, scales: { x: { beginAtZero: true, title: { display: true, text: 'VNĐ', font: { size: 10 } }, ticks: { callback: value => `${value / 1000000}M`, font: { size: 10 } } }, y: { ticks: { autoSkip: false, font: { size: 9 } }, grid: { display: false } } } }
+      });
+    }
+
+    // Kích hoạt hiệu ứng trượt mượt mà (smooth scrolling) cho các thẻ neo nội bộ
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        const link = new URL(this.href, window.location.href);
+        if (link.pathname !== window.location.pathname || !link.hash) return;
+        const targetId = link.hash;
+        
+        // Kiểm tra nếu href chỉ có dấu # thì bỏ qua hoặc cuộn lên đầu trang
+        if (targetId === '#') {
+          e.preventDefault();
+          window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+          });
+          return;
+        }
+
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          e.preventDefault();
+          history.pushState(null, '', targetId);
+          // Thực hiện trượt mượt mà đến phần tử đích
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    document.querySelectorAll('.funnel-stage').forEach(stage => {
+      stage.addEventListener('click', () => {
+        document.querySelectorAll('.funnel-stage').forEach(item => item.classList.add('opacity-40'));
+        stage.classList.remove('opacity-40');
+        const details = {
+          total: ['Tổng số thí sinh', '15.680 (100%)'],
+          qualifying: ['Qua Vòng loại', '4.250 (27.1%)'],
+          final: ['Lọt Chung kết', '120 (0.8%)']
+        }[stage.dataset.stage];
+        document.querySelector('#funnel-detail-label').textContent = details[0];
+        document.querySelector('#funnel-detail-value').textContent = details[1];
+        document.querySelector('#funnel-detail').classList.remove('opacity-0');
+      });
+    });
+
+    document.querySelectorAll('button').forEach(button => {
+      const label = button.textContent.trim();
+      if (label.includes('Xuất') || label.includes('Tải Báo Cáo')) {
+        button.addEventListener('click', () => window.print());
+      } else if (label.includes('Tùy Biến')) {
+        button.addEventListener('click', () => {
+          button.classList.toggle('bg-emerald-600');
+          button.classList.toggle('bg-slate-900');
+          button.querySelector('span:last-child').textContent = button.classList.contains('bg-emerald-600') ? 'Đang tùy biến' : 'Tùy Biến Dữ Liệu';
+        });
+      } else if (label.includes('notifications')) {
+        button.addEventListener('click', () => {
+          button.classList.toggle('bg-emerald-50');
+          button.classList.toggle('text-emerald-700');
+          button.title = button.classList.contains('bg-emerald-50') ? 'Đã đánh dấu thông báo' : 'Thông báo';
+        });
+      } else if (label.includes('Hôm nay') || label.includes('7 ngày') || label.includes('Quý')) {
+        button.addEventListener('click', () => {
+          button.parentElement.querySelectorAll('button').forEach(item => item.className = 'px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition-colors');
+          button.className = 'px-3 py-1 rounded-lg bg-white text-slate-900 font-semibold shadow-xs border border-slate-200/60';
+        });
+      } else if (label.includes('Xem toàn bộ')) {
+        button.addEventListener('click', () => button.closest('section')?.scrollIntoView({ behavior: 'smooth', block: 'center' }));
+      }
+    });
+
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ PHỄU CHUYỂN ĐỔI
+    // ==========================================
+    const funnelCtx = document.getElementById('conversionFunnelChart');
+    if (funnelCtx) {
+      new Chart(funnelCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Đăng ký', 'Thanh toán hoàn tất'],
+          datasets: [{
+            data: [98, 15], // Dữ liệu 98 đăng ký, 15 thanh toán
+            backgroundColor: ['#4c72b0', '#55a868'], // Mã màu chuẩn xanh dương & xanh lá
+            borderWidth: 1,
+            borderColor: ['#4c72b0', '#55a868'],
+            barPercentage: 0.8,
+            categoryPercentage: 0.9
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              display: false 
+            },
+            title: {
+              display: true,
+              text: 'Phễu chuyển đổi: Đăng ký -> Thanh toán',
+              font: { size: 14, weight: 'bold', family: 'sans-serif' },
+              color: '#000',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 105, // Khoảng trống cho nhãn số phía trên cột
+              title: {
+                display: true,
+                text: 'Số lượng thí sinh',
+                color: '#000'
+              },
+              ticks: { color: '#000' }
+            },
+            x: {
+              ticks: { color: '#000' },
+              grid: { display: false } // Ẩn lưới trục X giống hình
+            }
+          }
+        },
+        plugins: [{
+          id: 'topLabelsPlugin',
+          afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            chart.data.datasets[0].data.forEach((value, index) => {
+              const bar = chart.getDatasetMeta(0).data[index];
+              ctx.save();
+              ctx.fillStyle = '#000';
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'bottom';
+              ctx.font = '12px sans-serif';
+              // Vẽ con số (98, 15) ngay trên đỉnh mỗi cột
+              ctx.fillText(value, bar.x, bar.y - 2); 
+              ctx.restore();
+            });
+          }
+        }]
+      });
+    }
+    
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ thí sinh THEO TỈNH/THÀNH
+    // ==========================================
+    const locationCtx = document.getElementById('locationBarChart');
+    if (locationCtx) {
+      new Chart(locationCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Nghệ An', 'Thái Nguyên', 'Vĩnh Phúc', 'Lâm Đồng', 'Đà Nẵng', 'TP. Hồ Chí Minh', 'Nam Định', 'Hải Phòng', 'Quảng Ninh', 'Bắc Ninh'],
+          datasets: [{
+            data: [9, 8, 8, 7, 7, 6, 6, 6, 6, 5],
+            backgroundColor: '#c44e52', // Màu đỏ mận giống biểu đồ Matplotlib/Seaborn
+            borderColor: '#b24448',
+            borderWidth: 1,
+            barPercentage: 0.8,
+            categoryPercentage: 0.9
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              display: false 
+            },
+            title: {
+              display: true,
+              text: 'Số lượng thí sinh theo tỉnh/thành phố',
+              font: { size: 15, weight: 'normal', weight: 'bold',family: 'sans-serif' },
+              color: '#000',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 9.5, // Giới hạn trục y để khoảng trống phía trên vừa vặn
+              ticks: { color: '#000' }
+            },
+            x: {
+              ticks: { 
+                color: '#000',
+                maxRotation: 45, // Cố định góc xoay chữ 45 độ giống hình
+                minRotation: 45,
+                font: { size: 11, family: 'sans-serif' }
+              },
+              grid: { display: false }
+            }
+          }
+        }
+      });
+    }
+
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ THÍ SINH THEO TRƯỜNG
+    // ==========================================
+    const schoolBarCtx = document.getElementById('schoolBarChart');
+    if (schoolBarCtx) {
+      new Chart(schoolBarCtx, {
+        type: 'bar',
+        data: {
+          // Khai báo mảng từ trên xuống dưới theo đúng hình ảnh
+          labels: [
+            'Đại học Duy Tân',
+            'Đại học Công nghệ - ĐHQGHN',
+            'Đại học Bách Khoa Hà Nội',
+            'Đại học Việt - Hàn (Đà Nẵng)',
+            'Đại học Bách Khoa TP.HCM',
+            'Đại học Kinh tế Quốc dân',
+            'Đại học Công nghiệp Hà Nội',
+            'Đại học Sư phạm Kỹ thuật TP.HCM',
+            'Đại học FPT',
+            'Đại học Khoa học Tự nhiên TP.HCM'
+          ],
+          datasets: [{
+            data: [9, 9, 9, 8, 8, 6, 6, 6, 5, 5], // Dữ liệu tương ứng
+            backgroundColor: '#c44e52', // Màu đỏ mận đồng bộ với biểu đồ trên
+            borderColor: '#b24448',
+            borderWidth: 1,
+            barPercentage: 0.8,
+            categoryPercentage: 0.9
+          }]
+        },
+        options: {
+          indexAxis: 'y', // Biến biểu đồ cột dọc thành cột ngang (Horizontal Bar Chart)
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              display: false 
+            },
+            title: {
+              display: true,
+              text: 'Số lượng thí sinh theo trường',
+              font: { size: 15, weight: 'normal', weight: 'bold' ,family: 'sans-serif' },
+              color: '#000',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              ticks: { color: '#000' }
+            },
+            y: {
+              ticks: { 
+                color: '#000', 
+                font: { size: 11, family: 'sans-serif' } 
+              },
+              grid: { display: false } // Ẩn lưới trục y giống hình
+            }
+          }
+        }
+      });
+    }
+
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ THÍ SINH THEO BẢNG THI
+    // ==========================================
+    const bangThiCtx = document.getElementById('bangThiBarChart');
+    if (bangThiCtx) {
+      new Chart(bangThiCtx, {
+        type: 'bar',
+        data: {
+          // Khai báo nhãn tương ứng với trục x trong hình[cite: 10]
+          labels: ['Bảng B', 'Bảng A', 'nan'],
+          datasets: [{
+            // Ước lượng dữ liệu từ độ cao của các cột: ~78, 19, và 1[cite: 10]
+            data: [78, 19, 1], 
+            backgroundColor: '#c44e52', // Màu đỏ mận đồng bộ với biểu đồ trên[cite: 10]
+            borderColor: '#b24448',
+            borderWidth: 1,
+            barPercentage: 0.8,
+            categoryPercentage: 0.9
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              display: false 
+            },
+            title: {
+              display: true,
+              text: 'Số lượng thí sinh theo bảng thi',
+              font: { size: 15, weight: 'bold' ,family: 'sans-serif' },
+              color: '#000',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 82, // Căn chỉnh giới hạn max để biểu đồ trông cân đối với mức cao nhất là ~78[cite: 10]
+              ticks: { color: '#000' }
+            },
+            x: {
+              ticks: { 
+                color: '#000',
+                maxRotation: 45, // Cố định góc xoay chữ 45 độ giống hình[cite: 10]
+                minRotation: 45,
+                font: { size: 11, family: 'sans-serif' }
+              },
+              grid: { display: false } // Ẩn lưới trục x giống hình[cite: 10]
+            }
+          }
+        }
+      });
+    }
+
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ DOANH THU THEO TỈNH/THÀNH
+    // ==========================================
+    const doanhThuTinhThanhCtx = document.getElementById('doanhThuTinhThanhBarChart');
+    if (doanhThuTinhThanhCtx) {
+      new Chart(doanhThuTinhThanhCtx, {
+        type: 'bar',
+        data: {
+          // Các nhãn trục X theo đúng thứ tự trong hình
+          labels: ['Quảng Ninh', 'Nam Định', 'Đà Nẵng', 'Đồng Nai', 'Hà Tĩnh', 'Cần Thơ', 'Nghệ An', 'Hải Phòng', 'Vĩnh Phúc', 'TP. Hồ Chí Minh'],
+          datasets: [{
+            // Dữ liệu ước lượng từ biểu đồ (1.5 triệu, 1 triệu, 0.5 triệu)
+            data: [1500000, 1000000, 1000000, 1000000, 500000, 500000, 500000, 500000, 500000, 500000], 
+            backgroundColor: '#c44e52', // Màu đỏ mận đồng bộ chuẩn Matplotlib/Seaborn
+            borderColor: '#b24448',
+            borderWidth: 1,
+            barPercentage: 0.8,
+            categoryPercentage: 0.9
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              display: false 
+            },
+            title: {
+              display: true,
+              text: 'Doanh thu theo tỉnh/thành phố',
+              font: { size: 15, weight: 'bold', family: 'sans-serif' },
+              color: '#000',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 1550000, // Căn chỉnh để có khoảng trống trên cùng
+              title: {
+                display: true,
+                text: '1e6', // Mô phỏng nhãn 1e6 của Matplotlib ở góc trên trục Y
+                align: 'end',
+                color: '#000',
+                font: { size: 12, family: 'sans-serif' }
+              },
+              ticks: { 
+                color: '#000',
+                maxTicksLimit: 8 // Giới hạn số lượng tick để chia khoảng cách hiển thị 0, 200000, 400000...
+              }
+            },
+            x: {
+              ticks: { 
+                color: '#000',
+                maxRotation: 45, // Cố định góc xoay chữ 45 độ giống hình
+                minRotation: 45,
+                font: { size: 11, family: 'sans-serif' }
+              },
+              grid: { display: false } // Ẩn lưới trục X giống hình
+            }
+          }
+        }
+      });
+    }
+
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ DOANH THU THEO TRƯỜNG
+    // ==========================================
+    const doanhThuTruongCtx = document.getElementById('doanhThuTruongBarChart');
+    if (doanhThuTruongCtx) {
+      new Chart(doanhThuTruongCtx, {
+        type: 'bar',
+        data: {
+          // Các nhãn trục Y (từ trên xuống dưới theo hình mẫu)
+          labels: [
+            'Đại học Sư phạm Kỹ thuật TP.HCM',
+            'Đại học Việt - Hàn (Đà Nẵng)',
+            'Đại học Bách Khoa TP.HCM',
+            'Đại học FPT',
+            'THPT Trần Phú',
+            'THPT Chu Văn An',
+            'THPT Lương Thế Vinh',
+            'Đại học Duy Tân',
+            'Đại học Công nghệ - ĐHQGHN',
+            'Đại học Công nghiệp Hà Nội'
+          ],
+          datasets: [{
+            // Dữ liệu ước lượng trực quan từ biểu đồ (mức 1 triệu và 0.5 triệu)[cite: 12]
+            data: [1000000, 1000000, 1000000, 1000000, 500000, 500000, 500000, 500000, 500000, 500000],
+            backgroundColor: '#c44e52', // Màu đỏ mận đồng bộ chuẩn Matplotlib/Seaborn[cite: 12]
+            borderColor: '#b24448',
+            borderWidth: 1,
+            barPercentage: 0.8,
+            categoryPercentage: 0.9
+          }]
+        },
+        options: {
+          indexAxis: 'y', // Chuyển thành biểu đồ thanh ngang (Horizontal Bar Chart)[cite: 12]
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              display: false 
+            },
+            title: {
+              display: true,
+              text: 'Doanh thu theo trường',
+              font: { size: 15, weight: 'bold', family: 'sans-serif' },
+              color: '#000',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            x: {
+              beginAtZero: true,
+              max: 1050000, // Căn chỉnh giới hạn max để tạo khoảng trống phía bên phải cột 1 triệu[cite: 12]
+              ticks: { color: '#000' }
+            },
+            y: {
+              ticks: { 
+                color: '#000', 
+                font: { size: 11, family: 'sans-serif' } 
+              },
+              grid: { display: false } // Ẩn lưới trục Y giống hình[cite: 12]
+            }
+          }
+        }
+      });
+    }
+
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ DOANH THU THEO BẢNG THI
+    // ==========================================
+    const doanhThuBangThiCtx = document.getElementById('doanhThuBangThiBarChart');
+    if (doanhThuBangThiCtx) {
+      new Chart(doanhThuBangThiCtx, {
+        type: 'bar',
+        data: {
+          // Các nhãn trục X theo đúng hình ảnh[cite: 13]
+          labels: ['Bảng B', 'Bảng A'],
+          datasets: [{
+            // Dữ liệu tương ứng với cột 6 triệu và 1.5 triệu[cite: 13]
+            data: [6000000, 1500000], 
+            backgroundColor: '#c44e52', // Màu đỏ mận đồng bộ chuẩn Matplotlib/Seaborn[cite: 13]
+            borderColor: '#b24448',
+            borderWidth: 1,
+            barPercentage: 0.8,
+            categoryPercentage: 0.9
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              display: false 
+            },
+            title: {
+              display: true,
+              text: 'Doanh thu theo bảng thi',
+              font: { size: 15, weight: 'bold', family: 'sans-serif' },
+              color: '#000',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 6200000, // Để lại khoảng trống nhỏ phía trên cột 6 triệu
+              title: {
+                display: true,
+                text: '1e6', // Hiển thị 1e6 ở góc trên giống hệt hình[cite: 13]
+                align: 'end',
+                color: '#000',
+                font: { size: 12, family: 'sans-serif' }
+              },
+              ticks: { 
+                color: '#000',
+                // Rút gọn các số 6000000 thành 6, 1500000 thành 1.5 để mô phỏng trục đồ thị matplotlib[cite: 13]
+                callback: function(value) {
+                  return value / 1000000;
+                }
+              }
+            },
+            x: {
+              ticks: { 
+                color: '#000',
+                maxRotation: 45, // Góc xoay 45 độ[cite: 13]
+                minRotation: 45,
+                font: { size: 11, family: 'sans-serif' }
+              },
+              grid: { display: false } // Ẩn lưới trục X[cite: 13]
+            }
+          }
+        }
+      });
+    }
+
+// ==========================================
+    // KHỞI TẠO BIỂU ĐỒ XU HƯỚNG THEO NGÀY (CỘT + ĐƯỜNG)
+    // ==========================================
+    const xuHuongNgayCtx = document.getElementById('xuHuongNgayChart');
+    if (xuHuongNgayCtx) {
+      new Chart(xuHuongNgayCtx, {
+        type: 'bar', // Dùng bar làm gốc để vẽ hỗn hợp
+        data: {
+          // Các nhãn ngày trên trục X[cite: 14]
+          labels: ['Jul 21', 'Jul 22 2026', 'Jul 23', 'Jul 24', 'Jul 25', 'Jul 26', 'Jul 27', 'Jul 28', 'Jul 29', 'Jul 30', 'Jul 31', 'Aug 1', 'Aug 2'],
+          datasets: [
+            {
+              type: 'line', // Chỉ định dataset này là biểu đồ đường[cite: 14]
+              label: 'Doanh thu thực tế',
+              data: [0, 1000000, 0, 0, 0, 0, 1000000, 0, 0, 1500000, 2000000, 500000, 500000],
+              borderColor: '#4bc0c0', // Màu xanh ngọc (teal)
+              backgroundColor: '#4bc0c0',
+              borderWidth: 2,
+              pointBackgroundColor: '#4bc0c0',
+              pointBorderColor: '#ffffff',
+              pointBorderWidth: 2,
+              pointRadius: 4,
+              yAxisID: 'y1', // Gắn với trục Y bên phải
+              order: 1 // Order nhỏ hơn sẽ được vẽ nổi lên trên
+            },
+            {
+              type: 'bar', // Dataset này là biểu đồ cột[cite: 14]
+              label: 'Số đăng ký',
+              data: [2, 6, 2, 3, 2, 2, 7, 1, 17, 18, 8, 7, 7],
+              backgroundColor: '#6f42c1', // Màu tím (purple)[cite: 14]
+              yAxisID: 'y', // Gắn với trục Y bên trái
+              barPercentage: 0.8,
+              categoryPercentage: 0.9,
+              order: 2
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { 
+              position: 'top',
+              align: 'end',
+              labels: {
+                usePointStyle: true, // Dùng icon tròn/vuông thay vì khối màu mặc định[cite: 14]
+                boxWidth: 8,
+                font: { family: 'sans-serif' }
+              }
+            },
+            title: {
+              display: true,
+              text: 'Xu hướng đăng ký & doanh thu theo ngày',
+              font: { size: 18, weight: 'bold', family: 'sans-serif' },
+              color: '#333',
+              padding: { bottom: 20 }
+            }
+          },
+          scales: {
+            x: {
+              title: {
+                display: true,
+                text: 'Ngày đăng ký',
+                font: { size: 12 }
+              },
+              grid: { display: false } // Ẩn lưới trục X[cite: 14]
+            },
+            y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
+              title: {
+                display: true,
+                text: 'Số đăng ký',
+                font: { size: 12 }
+              },
+              max: 20, // Đặt mức tối đa là 20 để cột 18 chiếm phần lớn chiều cao[cite: 14]
+              ticks: { stepSize: 2 }
+            },
+            y1: {
+              type: 'linear',
+              display: true,
+              position: 'right',
+              title: {
+                display: true,
+                text: 'Doanh thu thực tế (đ)',
+                font: { size: 12 }
+              },
+              max: 2500000,
+              grid: { drawOnChartArea: false }, // Tắt đường lưới của trục Y bên phải để tránh trùng lặp
+              ticks: {
+                stepSize: 500000,
+                callback: function(value) {
+                  if (value === 0) return '0';
+                  return (value / 1000000) + 'M'; // Chuyển đổi hiển thị thành 0.5M, 1M, 1.5M, 2M...[cite: 14]
+                }
+              }
+            }
+          }
+        },
+        plugins: [{
+          // Plugin để vẽ số trên đỉnh các cột đăng ký giống như trong hình[cite: 14]
+          id: 'mixedChartLabelsPlugin',
+          afterDatasetsDraw(chart) {
+            const { ctx } = chart;
+            // Chỉ duyệt qua dataset của biểu đồ cột (index 1)
+            chart.getDatasetMeta(1).data.forEach((bar, index) => {
+              const value = chart.data.datasets[1].data[index];
+              ctx.save();
+              ctx.fillStyle = '#555';
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'bottom';
+              ctx.font = '11px sans-serif';
+              ctx.fillText(value, bar.x, bar.y - 4); // Vẽ số lên phía trên cột một chút
+              ctx.restore();
+            });
+          }
+        }]
+      });
+    }
+
+  });
+</script>
+
+</body>
+</html>
