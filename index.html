@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InsightBI Platform</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            color-scheme: light;
+            --ink: #172033;
+            --muted: #667085;
+            --line: #e4e7ec;
+            --primary: #4338ca;
+            --primary-soft: #eef2ff;
+            --surface: rgba(255, 255, 255, 0.88);
+        }
+        
+        * {
+            box-sizing: border-box;
+        }
+        
+        body {
+            min-height: 100vh;
+            margin: 0;
+            background: #f5f7fb;
+            color: var(--ink);
+            font-family: Inter, sans-serif;
+        }
+        
+        .page {
+            min-height: 100vh;
+            padding: 48px 24px;
+            background: radial-gradient(circle at 8% 10%, #e0e7ff 0, transparent 28%), radial-gradient(circle at 92% 90%, #d1fae5 0, transparent 24%), #f5f7fb;
+        }
+        
+        .container {
+            width: min(1080px, 100%);
+            margin: 0 auto;
+        }
+        
+        header {
+            margin-bottom: 42px;
+        }
+        
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+        }
+        
+        .eyebrow::before {
+            width: 28px;
+            height: 3px;
+            border-radius: 3px;
+            background: var(--primary);
+            content: "";
+        }
+        
+        h1 {
+            max-width: 680px;
+            margin: 14px 0 12px;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            line-height: 1.08;
+            letter-spacing: -.04em;
+        }
+        
+        .intro {
+            max-width: 600px;
+            margin: 0;
+            color: var(--muted);
+            line-height: 1.7;
+        }
+        
+        .dashboards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        
+        .dashboard {
+            display: flex;
+            min-height: 250px;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 26px;
+            border: 1px solid var(--line);
+            border-radius: 18px;
+            background: var(--surface);
+            box-shadow: 0 14px 38px rgba(23, 32, 51, .07);
+            color: inherit;
+            text-decoration: none;
+            transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+        }
+        
+        .dashboard:hover,
+        .dashboard:focus-visible {
+            transform: translateY(-5px);
+            border-color: #a5b4fc;
+            box-shadow: 0 20px 42px rgba(67, 56, 202, .14);
+            outline: none;
+        }
+        
+        .icon {
+            display: grid;
+            width: 48px;
+            height: 48px;
+            place-items: center;
+            border-radius: 14px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            font-size: 23px;
+            font-weight: 700;
+        }
+        
+        h2 {
+            margin: 28px 0 8px;
+            font-family: "Plus Jakarta Sans", sans-serif;
+            font-size: 1.25rem;
+        }
+        
+        .dashboard p {
+            margin: 0;
+            color: var(--muted);
+            font-size: .93rem;
+            line-height: 1.55;
+        }
+        
+        .open {
+            margin-top: 22px;
+            color: var(--primary);
+            font-size: .9rem;
+            font-weight: 700;
+        }
+        
+        footer {
+            margin-top: 38px;
+            color: #98a2b3;
+            font-size: .82rem;
+        }
+        
+        @media (max-width: 760px) {
+            .page {
+                padding: 32px 18px;
+            }
+            header {
+                margin-bottom: 28px;
+            }
+            .dashboards {
+                grid-template-columns: 1fr;
+            }
+            .dashboard {
+                min-height: 190px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="page">
+        <div class="container">
+            <header>
+                <div class="eyebrow">EduMetrics Intelligence</div>
+                <h1>InsightBI Platform</h1>
+                <p class="intro">Chọn dashboard bạn muốn xem để bắt đầu phân tích dữ liệu giáo dục và kinh doanh.</p>
+            </header>
+
+            <section class="dashboards" aria-label="Các dashboard">
+                <a class="dashboard" href="thpt.html">
+                    <div>
+                        <div class="icon" aria-hidden="true">TH</div>
+                        <h2>Trường THPT</h2>
+                        <p>Khám phá các chỉ số và xu hướng liên quan đến học sinh trung học phổ thông.</p>
+                    </div>
+                    <span class="open">Mở dashboard &rarr;</span>
+                </a>
+
+                <a class="dashboard" href="doanh-nghiep.html">
+                    <div>
+                        <div class="icon" aria-hidden="true">DN</div>
+                        <h2>Doanh nghiệp</h2>
+                        <p>Theo dõi thí sinh, doanh thu, phễu chuyển đổi và hiệu quả vận hành.</p>
+                    </div>
+                    <span class="open">Mở dashboard &rarr;</span>
+                </a>
+
+                <a class="dashboard" href="dai-hoc.html">
+                    <div>
+                        <div class="icon" aria-hidden="true">ĐH</div>
+                        <h2>Trường Đại học</h2>
+                        <p>Phân tích dữ liệu tuyển sinh và các chỉ số tổng quan của khối đại học.</p>
+                    </div>
+                    <span class="open">Mở dashboard &rarr;</span>
+                </a>
+            </section>
+
+            <footer>InsightBI Platform</footer>
+        </div>
+    </main>
+</body>
+
+</html>
